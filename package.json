@@ -7,7 +7,7 @@
     "server":"live-server public --host=localhost --port=3000 --no-browser",
     "compile":"sass src/sass/main.scss public/assets/styles/main.css",
     "watch":"npm run compile -- --watch",
-    "build":"sass src/sass/main.css public/assets/styles/main.min.css --minify"
+    "build":"sass src/sass/main.scss public/assets/styles/main.min.css --style=compressed"
   },
   "devDependencies": {
     "live-server": "^1.2.2",
