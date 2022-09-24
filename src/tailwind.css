@@ -2,14 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  
-}
-
 @layer components {
-  
-}
+  .App{
+    @apply flex justify-center items-center;
+    @apply bg-slate-800 text-slate-50 h-screen;
+  }
+  .Count{
+    @apply text-10xl font-extralight;
+    @apply animate-pulse-fast;
+    @apply motion-reduce:animate-none;
+    font-size: clamp(64px,50vw,400px);
+  }
+  .Button{
+    @apply select-none absolute top-0 right-0 px-6 py-2 m-1;
+    @apply bg-transparent text-slate-100 border-4 border-slate-500 cursor-pointer rounded font-bold;
+    @apply hover:border-slate-100 ;
+    @apply focus:outline-none focus:border-white;
+    @apply disabled:cursor-not-allowed disabled:border-slate-600;
+  }
 
-@layer utilities {
-  
+  .Button svg{
+    @apply pointer-events-none
+  }
 }

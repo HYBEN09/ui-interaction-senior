@@ -7,5 +7,9 @@
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
     "**/node_modules": true
+  },
+  "css.lint.unknownAtRules": "ignore",
+  "files.associations": {
+    "*.css":"talwindcss"
   }
 }
