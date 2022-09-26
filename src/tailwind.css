@@ -14,13 +14,14 @@
     font-size: clamp(64px,50vw,400px);
   }
   .Button{
-    @apply select-none absolute top-0 right-0 px-6 py-2 m-1;
+    @apply select-none px-6 py-2 m-1;
+    @apply fixed top-5 right-5 z-[1000] transition duration-200;
     @apply bg-transparent text-slate-100 border-4 border-slate-500 cursor-pointer rounded font-bold;
-    @apply hover:border-slate-100 ;
-    @apply focus:outline-none focus:border-white;
-    @apply disabled:cursor-not-allowed disabled:border-slate-600;
+    @apply hover:border-slate-100 hover:text-slate-50 hover:shadow-2xl;
+    @apply focus:outline-none focus:border-white focus:text-white focus:ring-2 focus:ring-slate-500 focus:ring-offset-1 focus:ring-offset-transparent;
+    @apply disabled:cursor-not-allowed disabled:border-slate-600 disabled:text-slate-600;
+    @apply active:scale-95;
   }
-
   .Button svg{
     @apply pointer-events-none
   }
