@@ -4,30 +4,109 @@ import {
   getNode as $,
   documentTitle,
   getRandomMinMax,
+  getRandom,
+  getNode,
+  text,
+  memo,
+  delay,
+  removeClass,
+  addClass,
 } from "./lib/index.js";
 
 // 애플리케이션 설정
 const APP_CONFIG = {
   min: 40,
   max: 80,
+  current: 0,
+  step: 1,
+  fps: 30,
 };
 
-// 애플리케이션 랜딩 초기화
-function init() {
+// 카운트 목표 값 설정
+function getTargetCount() {
   const { min, max } = APP_CONFIG;
-
-  // 카운트 목표 값이 설정
-  const TARGET_COUNT = getRandomMinMax(min, max);
-
-  // 문서 제목이 카운트 목표 값 설정
-  documentTitle((initialDocTitle) => {
-    return `(${TARGET_COUNT}) ${initialDocTitle}`;
-  });
+  return getRandomMinMax(min, max);
 }
 
-init();
+// 문서 제목 카운트 목표 값 설정
+function updateDocumentTitle(targetCount) {
+  documentTitle((initialDocTitle) => `(${targetCount}) ${initialDocTitle}`);
+}
+
+// UI의 카운트 값 업데이트
+function renderCount(currentCount, isStop) {
+  const count = memo(() => $(".Count"), "Count");
+  text(count, currentCount);
+  // isStop && count.classList.add("animate-none");
+  isStop && addClass(count, "animate-none");
+}
+
+//에니메이션
+function animate(initialCount, targetCount) {
+  let stopAnimateId;
+
+  //const count = initialCount 로 쓰면 안됨.
+  //render(count += 1)에서 count를 더 사용하기 떄문에.
+
+  let count = initialCount;
+  return function animateCount(render) {
+    count += 1;
+    let isStopAnimate = count >= targetCount;
+
+    // 증가하는 카운트 값 목표 값 비교
+    render(count, isStopAnimate);
+
+    // 카운트 업이 정지되는 조건
+    if (isStopAnimate) {
+      return clearTimeout(stopAnimateId);
+    }
+
+    const FPS = memo(() => APP_CONFIG.fps, "fps");
+    stopAnimateId = delay(animateCount.bind(this, render), 1000 / FPS);
+
+    //클린업 함수 외부에 내보내기
+    return () => clearTimeout(stopAnimateId);
+  };
+}
+
+//curring function
+// const stopAnimate = animate()(() => {
+//   console.log("run animate function");
+// });
+
+// TEST
+// globalThis.stopAnimate = stopAnimate;
+
+// 애플리케이션 랜딩 초기화
+function randomCountUp() {
+  const TARGET_COUNT = getTargetCount();
+  updateDocumentTitle(TARGET_COUNT);
+
+  const animateCount = animate(APP_CONFIG.current, TARGET_COUNT);
+  animateCount(renderCount);
+
+  function reset() {
+    const count = memo(() => $(".Count"), "Count");
+    removeClass(count, "animate-none");
+  }
+}
 
 // 문서 요소 참조
 const startButton = $(".Button");
 
-on(startButton, "click", init);
+// TEST
+// text(count, (countValue) => {
+//   console.log(countValue);
+//   return Number(countValue) + 99;
+// });
+
+// html(app, (htmlCode) => {
+//   console.log(htmlCode);
+//   return `${htmlCode} <div> update content </div>`;
+// });
+
+// 애플리케이션 최초 구동
+randomCountUp();
+
+// 이벤트 핸들링
+on(startButton, "click", randomCountUp);
