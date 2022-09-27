@@ -10,6 +10,6 @@
   },
   "css.lint.unknownAtRules": "ignore",
   "files.associations": {
-    "*.css":"talwindcss"
+    "*.css": "tailwindcss"
   }
 }
