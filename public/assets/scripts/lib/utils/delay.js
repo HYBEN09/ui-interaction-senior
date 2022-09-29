@@ -19,6 +19,6 @@ export function delay(...args) {
 // delay(() => console.log("l초 뒤에 실행됨"));
 // delay(() => console.log("3.l초 뒤에 실행됨"), 3100);
 
-// promise
+// promise api 지원
 // delay().then(() => console.log("l초 뒤에 실행됨"));
 // delay(2400).then(() => console.log("2.4초 뒤에 실행됨"));

@@ -11,6 +11,7 @@ import {
   delay,
   removeClass,
   addClass,
+  AudioPlayer,
 } from "./lib/index.js";
 
 // 애플리케이션 설정
@@ -21,6 +22,10 @@ const APP_CONFIG = {
   step: 1,
   fps: 30,
 };
+
+//오디오 객체 생성
+const shuffleSound = new AudioPlayer("/assets/media/shuffle.mp3");
+const ticSound = new AudioPlayer("/assets/media/tic.mp3");
 
 // 카운트 목표 값 설정
 function getTargetCount() {
@@ -45,12 +50,11 @@ function renderCount(currentCount, isStop) {
 function animate(initialCount, targetCount) {
   let stopAnimateId;
 
-  //const count = initialCount 로 쓰면 안됨.
-  //render(count += 1)에서 count를 더 사용하기 떄문에.
-
   let count = initialCount;
+
   return function animateCount(render) {
     count += 1;
+
     let isStopAnimate = count >= targetCount;
 
     // 증가하는 카운트 값 목표 값 비교
@@ -58,7 +62,9 @@ function animate(initialCount, targetCount) {
 
     // 카운트 업이 정지되는 조건
     if (isStopAnimate) {
-      return clearTimeout(stopAnimateId);
+      clearTimeout(stopAnimateId);
+      shuffleSound.stop();
+      return;
     }
 
     const FPS = memo(() => APP_CONFIG.fps, "fps");
@@ -79,11 +85,14 @@ function animate(initialCount, targetCount) {
 
 // 애플리케이션 랜딩 초기화
 function randomCountUp() {
+  reset();
   const TARGET_COUNT = getTargetCount();
   updateDocumentTitle(TARGET_COUNT);
 
   const animateCount = animate(APP_CONFIG.current, TARGET_COUNT);
   animateCount(renderCount);
+
+  shuffleSound.loopPlay();
 
   function reset() {
     const count = memo(() => $(".Count"), "Count");
@@ -95,6 +104,7 @@ function randomCountUp() {
 const startButton = $(".Button");
 
 // TEST
+
 // text(count, (countValue) => {
 //   console.log(countValue);
 //   return Number(countValue) + 99;
@@ -110,3 +120,4 @@ randomCountUp();
 
 // 이벤트 핸들링
 on(startButton, "click", randomCountUp);
+on(startButton, "mouseenter", ticSound.play.bind(ticSound));

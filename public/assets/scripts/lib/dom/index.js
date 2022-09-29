@@ -6,3 +6,4 @@ export * from "./content.js";
 export * from "./classes.js";
 export * from "./attr.js";
 export * from "./create.js";
+export * from "./insert.js";

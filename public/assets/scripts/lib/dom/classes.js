@@ -63,7 +63,7 @@ export function toggleClass(element, ...classes) {
 }
 export function radioClass(element, className) {
   if (!isElement(element)) {
-    throwTypeError("인자 유형은 요소 노드여야 합니다");
+    throwTypeError("element 인자 유형은 요소 노드여야 합니다");
   }
 
   if (!isString(className)) {

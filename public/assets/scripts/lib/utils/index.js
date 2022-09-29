@@ -5,3 +5,5 @@ export * from "./throwError.js";
 export * from "./delay.js";
 export * from "./loop.js";
 export * from "./memo.js";
+export * from "./debounce.js";
+export * from "./throttle.js";
