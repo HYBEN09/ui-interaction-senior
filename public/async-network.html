@@ -21,6 +21,7 @@
     const endpoint = 'https://jsonplaceholder.typicode.com/todo';
 
     button.addEventListener('click', () => {
+      
       fetch(endpoint)
         .then(response => response.json())
         .then(json => {
