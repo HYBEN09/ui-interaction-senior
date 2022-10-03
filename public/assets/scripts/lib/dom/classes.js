@@ -10,6 +10,7 @@ export function addClass(element, ...classes) {
     .filter((className) => isString(className))
     .forEach((className) => element.classList.add(className));
 }
+
 export function removeClass(element, ...classes) {
   if (!isElement(element)) {
     throwTypeError("인자 유형은 요소 노드여야 합니다");
@@ -23,6 +24,7 @@ export function removeClass(element, ...classes) {
     .filter((className) => isString(className))
     .forEach((className) => element.classList.remove(className));
 }
+
 export function hasClass(element) {
   if (!isElement(element)) {
     throwTypeError("인자 유형은 요소 노드여야 합니다");
@@ -34,6 +36,7 @@ export function hasClass(element) {
 
   return element.classList.contains(className);
 }
+
 export function toggleClassSingle(element, className) {
   if (!isElement(element)) {
     throwTypeError("인자 유형은 요소 노드여야 합니다");
@@ -61,6 +64,7 @@ export function toggleClass(element, ...classes) {
     each(classes, (className) => toggleClassSingle(element, className));
   }
 }
+
 export function radioClass(element, className) {
   if (!isElement(element)) {
     throwTypeError("element 인자 유형은 요소 노드여야 합니다");
