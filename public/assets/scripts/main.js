@@ -51,7 +51,7 @@ function createSquare() {
   return square;
 }
 
-function drawSquares({ showGridNumbers = false } = {}) {
+function drawSquares({ showGridNumbers } = {}) {
   loop((i) => {
     const square = createSquare();
 
@@ -106,8 +106,6 @@ function move() {
   let { headIndex } = movingSnake();
 
   //snake 헤드가 애플을 먹으면 처리
-
-  // hasClass(squares[headIndex], GAME_ELEMENTS.apple
 
   if (hasClass(squares[headIndex], GAME_ELEMENTS.apple)) {
     //에플은 그리드에서 사라져야 함
@@ -275,7 +273,7 @@ function gameStop() {
 
 //showGridNumbers: true => grid안에 숫자 표시
 function init() {
-  drawSquares({ showGridNumbers: true });
+  drawSquares({ showGridNumbers: false });
 }
 
 init();
