@@ -1,0 +1,96 @@
+body {
+  margin: 4rem;
+  background: #f3f3fc;
+}
+
+.a11y-hidden {
+  overflow: hidden;
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: circle(0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  white-space: nowrap;
+}
+
+caption.a11y-hidden {
+  position: static;
+}
+
+.a11y-hidden.focusable:focus {
+  position: static;
+  clip: auto;
+  clip-path: unset;
+  width: initial;
+  height: initial;
+  margin: initial;
+  white-space: initial;
+  visibility: initial;
+}
+
+.spinner {
+  margin: 0;
+  position: absolute;
+  z-index: 100;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  color: #e17c2b;
+}
+
+.user-card-list {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  gap: 20px;
+  min-height: 300px;
+}
+
+.user-card {
+  --card-primary: #706efd;
+  --card-secondary: #fefefe;
+
+  border: 4px solid var(--card-primary);
+  border-radius: 8px;
+  padding: 2rem;
+  background: var(--card-secondary);
+  color: var(--card-primary);
+  transition: all 0.2s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+
+.user-card:hover {
+  --card-secondary: #706efd;
+  --card-primary: #fefefe;
+
+  scale: 1.02;
+}
+
+.user-card:hover a {
+  color: var(--card-secondary);
+}
+
+.user-card-empty {
+  --card-primary: #9692c3;
+  font-weight: 900;
+}
+
+.user-name {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 1.6rem;
+}
+
+.user-resource-info {
+  display: flex;
+  margin-top: 16px;
+  gap: 12px;
+}
+
+.user-card a {
+  text-decoration: none;
+  font-size: 1rem;
+  color: inherit;
+  padding: 0.2em 0.4em;
+  background: #f0f0ff;
+}
