@@ -4,6 +4,7 @@ export const HTTP_METHODS = {
   get: "GET",
   put: "PUT",
   post: "POST",
+  patch: "PATCH",
   delete: "DELETE",
 };
 

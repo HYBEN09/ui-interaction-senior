@@ -1,43 +1,31 @@
-// const getCookie = (name) => {
-//   const decodeCookie = decodeURIComponent(document.cookie);
-//   const arrayCookie = decodeCookie.split("; ");
+export const getCookie = (key) => {
+  if (key) {
+    let cookie = decodeURIComponent(document.cookie);
 
-//   let result = null;
+    cookie = cookie.split(";").map((keyValue) => keyValue.trim().split("="));
 
-//   arrayCookie.forEach((element) => {
-//     if (element.indexOf(name) === 0) {
-//       result = element.substring(name.length + 1);
-//     }
-//   });
-
-//   return result;
-// };
-
-// const setCookie = (name, value, options = {}) => {
-//   let cookie = name + "=" + encodeURIComponent(value);
-//   if (typeof options === "number") {
-//     cookie = "; max-age" + (options * 86, 400);
-//     document.cookie = cookie;
-//   }
-// };
-
-const setCookie = (name, value, options = {}) => {
-  if (typeof options === "number") {
-    cookie = "; max-age" + (options * 86, 400);
+    //Object.fromEntries 배열을 다시 객체로
+    cookie = Object.fromEntries(cookie);
+    return cookie[key];
   }
-  value = encodeURIComponent(value);
-  document.cookie = `${name}=${value}; path=/`;
 };
 
-const deleteCookie = (name) => {
-  // setCookie(name, null, null);
+export const setCookie = (key, value, options = {}) => {
+  if (typeof key === "string" && (value || value.trim() === "")) {
+    let updateCookie = `${key}=${encodeURIComponent(value)};`;
 
-  document.cookie = name + "=; expires=Thu, 01 Jan 1999 00:00:10 GMT;";
+    for (let [key, value] of Object.entries(options)) {
+      if (value) {
+        updateCookie += `${key}=${value};`;
+      }
+    }
+
+    document.cookie = updateCookie;
+  } else {
+    throw new TypeError("저장할 쿠키의 키:값이 필요합니다.");
+  }
 };
 
-setCookie("name1", "혜빈", 365);
-setCookie("name2", "변혜빈", 1000);
-
-console.log(getCookie("name1"));
-
-console.log(document.cookie);
+export const deleteCookie = (key) => {
+  setCookie(key, "", { "max-age": -1 });
+};

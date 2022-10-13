@@ -1,7 +1,59 @@
-const { stringify: serialize, parse: deserialize } = JSON;
+// 구조 분해 할당(destructing assignment)
 
-export const saveStorage = (key, value) => {};
+const {
+  localStorage: storage,
+  //  직렬(serialize), 역직렬화(Deserialize)
+  JSON: { stringify: serialize, parse: deserialize },
+} = globalThis;
 
-export const loadStorage = (key) => {};
+// localStorage 역할
+// 개인화(personalization)
 
-export const deleteStorage = (key) => {};
+// export const saveStorage = (key, value) => {
+//   if (typeof key === "string") {
+//     storage.setItem(key, serialize(value));
+//   }
+// };
+
+// export const loadStorage = (key) => {
+//   if (typeof key === "string") {
+//     return deserialize(storage.getItem(key));
+//   }
+// };
+
+// export const deleteStorage = (key) => {
+//   if (!key) {
+//     storage.clear();
+//   } else {
+//     storage.removeItem(key);
+//   }
+// };
+
+export const saveStorage = (key, value) => {
+  return new Promise((resolve, reject) => {
+    if (typeof key === "string") {
+      storage.setItem(key, serialize(value));
+      resolve();
+    } else {
+      reject({ message: "key는 문자 값이어야 합니다" });
+    }
+  });
+};
+
+export const loadStorage = (key) => {
+  return new Promise((resolve, reject) => {
+    if (typeof key === "string") {
+      resolve(deserialize(storage.getItem(key)));
+    } else {
+      reject({ message: "key는 문자 값이어야 합니다" });
+    }
+  });
+};
+
+export const deleteStorage = (key) => {
+  return new Promise((resolve) => {
+    !key ? storage.clear() : storage.removeItem(key);
+
+    resolve();
+  });
+};

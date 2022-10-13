@@ -1,6 +1,32 @@
 body {
-  margin: 4rem;
+  margin: 4rem 0;
   background: #f3f3fc;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: 8px;
+  width: clamp(320px, 90vw, 1024px);
+  margin: 24px auto;
+}
+
+.buttonGroup button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  padding: 0.8em 1.2em;
+  background: #706efd;
+  color: #fff;
+  font-weight: 900;
+}
+
+.buttonGroup button:hover {
+  background: #4240b6;
 }
 
 .a11y-hidden {
@@ -45,6 +71,9 @@ caption.a11y-hidden {
   flex-flow: column;
   gap: 20px;
   min-height: 300px;
+  width: clamp(320px, 90vw, 1024px);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .user-card {
@@ -76,7 +105,7 @@ caption.a11y-hidden {
 }
 
 .user-card-error {
-  --card-primary: #6b0909;
+  --card-primary: #c3929e;
   font-weight: 900;
 }
 
@@ -98,12 +127,4 @@ caption.a11y-hidden {
   color: inherit;
   padding: 0.2em 0.4em;
   background: #f0f0ff;
-}
-
-.buttonGroup{
-  display: flex;
-  flex-flow: row wrap;
-  column-gap: 8px;
-  width: clamp(320px, 90vw, 960px);
-  margin: 12px auto;
 }
