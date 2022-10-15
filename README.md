@@ -25,3 +25,10 @@ AJAX + API 프로그래밍
 - [ ] JSON 서버를 사용해 데이터 쓰기, 읽기, 수정, 삭제
 - [ ] Express 프레임워크를 사용해 웹 개발 서버 구성 및 Fake 데이터 쓰기, 읽기, 수정, 삭제
 - [ ] MongoDB 데이터베이스를 사용해 Real 데이터 쓰기, 읽기, 수정, 삭제
+
+
+
+
+    // "client: dev": "live-server public --host=localhost --port=3000 --no-browser",
+    // "start": "node server/app.js",
+    // "dev": "nodemon server/app.js"

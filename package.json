@@ -1,8 +1,15 @@
 {
   "scripts": {
-    "dev": "live-server public --host=localhost --port=3000 --no-browser"
+    "client: dev": "live-server public --host=localhost --port=3000 --no-browser",
+    "start": "node server/app.js",
+    "dev": "nodemon server/app.js"
   },
   "dependencies": {
-    "live-server": "^1.2.2"
+    "cors": "^2.8.5",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "live-server": "^1.2.2",
+    "nodemon": "^2.0.20"
   }
 }
+

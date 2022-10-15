@@ -22,9 +22,7 @@
     "like":2,
     "song-count":2,
     "cover":{
-      "size":640,
-      "quality":100,
-      "src":"https://cdnimg.melon.co.kr/cm2/album/images/110/73/513/11073513_20221007163126_500.jpg?cfeb2a21ff2a3d59df1d6e26f85b193d/melon/resize/282/quality/100/optimize"
+      "src":"https://cdnimg.melon.co.kr/cm2/album/images/110/73/513/11073513_20221007163126_500.jpg?cfeb2a21ff2a3d59df1d6e26f85b193d/melon/resize/282/quality/80/optimize"
     }
 
   }

@@ -1,1 +1,1 @@
-export { default as getAlbums } from "./album.js";
+export * from "./album.js";
