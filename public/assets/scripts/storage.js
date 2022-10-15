@@ -1,13 +1,7 @@
-// 구조 분해 할당(destructing assignment)
-
 const {
   localStorage: storage,
-  //  직렬(serialize), 역직렬화(Deserialize)
   JSON: { stringify: serialize, parse: deserialize },
 } = globalThis;
-
-// localStorage 역할
-// 개인화(personalization)
 
 // export const saveStorage = (key, value) => {
 //   if (typeof key === "string") {
@@ -35,7 +29,7 @@ export const saveStorage = (key, value) => {
       storage.setItem(key, serialize(value));
       resolve();
     } else {
-      reject({ message: "key는 문자 값이어야 합니다" });
+      reject({ message: "key는 문자 값이어야 합니다." });
     }
   });
 };
@@ -45,15 +39,13 @@ export const loadStorage = (key) => {
     if (typeof key === "string") {
       resolve(deserialize(storage.getItem(key)));
     } else {
-      reject({ message: "key는 문자 값이어야 합니다" });
+      reject({ message: "key는 문자 값이어야 합니다." });
     }
   });
 };
-
 export const deleteStorage = (key) => {
   return new Promise((resolve) => {
     !key ? storage.clear() : storage.removeItem(key);
-
     resolve();
   });
 };

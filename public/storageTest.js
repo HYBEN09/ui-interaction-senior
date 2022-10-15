@@ -39,3 +39,21 @@ delay(2000).then(() => {
   const store = loadStorage(STORE);
   console.log(store);
 });
+
+const interest = [
+  {
+    movie: "영화보기",
+    music: "음악듣기",
+    game: "게임하기",
+  },
+];
+const HOBBY = "@hobby";
+
+delay(1500).then(() => {
+  saveStorage(HOBBY, interest);
+});
+
+delay(1700).then(() => {
+  const inter = loadStorage(HOBBY);
+  console.log(inter);
+});
