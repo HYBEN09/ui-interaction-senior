@@ -23,6 +23,6 @@ export const setCookie = (key, value, options = {}) => {
   }
 };
 
-export const  = (key) => {
+export const deleteCookie = (key) => {
   setCookie(key, "", { "max-age": -1 });
 };
