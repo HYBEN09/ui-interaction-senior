@@ -1,10 +1,7 @@
 export const getCookie = (key) => {
   if (key) {
     let cookie = decodeURIComponent(document.cookie);
-
     cookie = cookie.split(";").map((keyValue) => keyValue.trim().split("="));
-
-    //Object.fromEntries 배열을 다시 객체로
     cookie = Object.fromEntries(cookie);
     return cookie[key];
   }
@@ -12,11 +9,11 @@ export const getCookie = (key) => {
 
 export const setCookie = (key, value, options = {}) => {
   if (typeof key === "string" && (value || value.trim() === "")) {
-    let updateCookie = `${key}=${encodeURIComponent(value)};`;
+    let updateCookie = `${key}=${encodeURIComponent(value)}; `;
 
     for (let [key, value] of Object.entries(options)) {
       if (value) {
-        updateCookie += `${key}=${value};`;
+        updateCookie += `${key}=${value}`;
       }
     }
 
@@ -26,6 +23,6 @@ export const setCookie = (key, value, options = {}) => {
   }
 };
 
-export const deleteCookie = (key) => {
+export const  = (key) => {
   setCookie(key, "", { "max-age": -1 });
 };
