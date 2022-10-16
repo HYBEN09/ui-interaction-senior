@@ -14,7 +14,7 @@ export const DUMMY_USER_LIST = [
 ];
 
 const createSpinner = (size = 100, loadingMessage = "데이터 로딩 중...") => {
-  return `
+  return /*html*/ `
   <figure class= 'spinner'>
   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" preserveAspectRatio="xMidYMid">
 <defs>
